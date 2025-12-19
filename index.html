@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Animation</title>
+    <title>Christmas Postcard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,6 +26,7 @@
         }
     </style>
 </head>
+
 <body>
     <canvas id="canvas"></canvas>
 
@@ -112,7 +118,7 @@
                 ctx.arc(ornament.x, ornament.y, 6 * pulse, 0, Math.PI * 2);
                 ctx.fillStyle = ornament.color;
                 ctx.fill();
-                
+
                 // Ornament shine
                 ctx.beginPath();
                 ctx.arc(ornament.x - 2, ornament.y - 2, 2, 0, Math.PI * 2);
@@ -129,7 +135,7 @@
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(time * 0.02);
-            
+
             ctx.beginPath();
             for (let i = 0; i < 5; i++) {
                 const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
@@ -143,15 +149,15 @@
                 }
             }
             ctx.closePath();
-            
+
             ctx.fillStyle = color;
             ctx.fill();
-            
+
             // Star glow
             ctx.shadowBlur = 20;
             ctx.shadowColor = color;
             ctx.fill();
-            
+
             ctx.restore();
         }
 
@@ -160,12 +166,12 @@
             ctx.fillStyle = '#ffffff';
             ctx.beginPath();
             ctx.moveTo(0, canvas.height - 80);
-            
+
             for (let x = 0; x <= canvas.width; x += 20) {
                 const y = canvas.height - 80 + Math.sin(x * 0.02 + time * 0.05) * 10;
                 ctx.lineTo(x, y);
             }
-            
+
             ctx.lineTo(canvas.width, canvas.height);
             ctx.lineTo(0, canvas.height);
             ctx.closePath();
@@ -180,7 +186,7 @@
             );
             gradient.addColorStop(0, 'rgba(0, 0, 0, 0.2)');
             gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-            
+
             ctx.fillStyle = gradient;
             ctx.beginPath();
             ctx.ellipse(canvas.width / 2, canvas.height - 40, 100, 20, 0, 0, Math.PI * 2);
@@ -222,33 +228,33 @@
 
         function drawText() {
             ctx.save();
-            
+
             // "Merry Christmas" text with glow
-            ctx.font = 'bold 48px Arial, sans-serif';
+            ctx.font = 'bold 56px "Mountains of Christmas", cursive';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
-            
+
             const pulse = Math.sin(time * 0.08) * 0.1 + 1;
-            
+
             // Text shadow/glow
             ctx.shadowBlur = 20 * pulse;
             ctx.shadowColor = '#ff6b6b';
             ctx.fillStyle = '#ff3333';
             ctx.fillText('Merry Christmas!', canvas.width / 2, 30);
-            
+
             // Second text
-            ctx.font = 'italic 24px Arial, sans-serif';
+            ctx.font = 'bold 56px "Mountains of Christmas", cursive';
             ctx.shadowBlur = 10;
             ctx.shadowColor = '#4dabf7';
             ctx.fillStyle = '#74c0fc';
             ctx.fillText('Happy Holidays! 🎄', canvas.width / 2, 85);
-            
+
             ctx.restore();
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
+
             // Background gradient
             const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
             bgGradient.addColorStop(0, '#0a1128');
@@ -270,4 +276,5 @@
         animate();
     </script>
 </body>
+
 </html>
